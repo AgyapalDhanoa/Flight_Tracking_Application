@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flight_Track">
         <activity
+            android:name=".Login_form"
+            android:exported="false" />
+        <activity
+            android:name=".Signup_Form"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

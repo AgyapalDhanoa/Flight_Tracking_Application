@@ -1,0 +1,21 @@
+Flight Tracking App
+Created By 
+Name: Agyapal Dhanoa, Gurpreet Kaur
+
+Project Purpose: To Track Flights by providing the whole related data to user.
+Description: It is a flight tracking app that can track current flights and provide information such as flight date,
+flight status, airline information, and arrival and departure times. There would be a search box where a user could 
+look up certain flights and get information about them. If a user wants to learn more about a particular airline with
+which they are planning to go, they may readily obtain information such as the date the airline was created, the 
+airline's name, fleet size, country name, and so on. Another option would be for a user to search for any airport,
+worldwide or locally, and quickly learn about the details. There would side bar, where a user can access all options 
+and on the bottom with a Logout option A user would have to sign up or sign in before being able to access all the data.
+
+
+User Stories:
+
+●	As a user, I want to have a login screen.
+●	As a user, I want to get the current status of my flights.
+●	As a user, I driver, I want to track arrival time of customer’s flights so, I can arrive on airport on time.
+●	As a user, I want to be updated about terminal and gate number’s where my flight will be there.
+●	As a user, I want a search option, to find my information quickly.
