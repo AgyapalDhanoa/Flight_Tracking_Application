@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
         android:background="?attr/colorPrimary"
+        android:contentDescription="@string/app_name"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:tabIndicatorColor="#FFFFFF"
