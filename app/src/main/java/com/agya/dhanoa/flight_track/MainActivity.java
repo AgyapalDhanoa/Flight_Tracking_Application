@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 //https://api.flightapi.io/compschedule/6205d08f13b15b74ee7b9a4e?mode=arrivals&day=2&iata=YYC
+// https://api.flightapi.io/compschedule/6205d08f13b15b74ee7b9a4e?mode=departure&day=2&iata=YYC
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         // Set the text for each tab.
         tabLayout.addTab(tabLayout.newTab().setText(R.string.tab_label1));
