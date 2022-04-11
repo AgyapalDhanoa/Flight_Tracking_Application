@@ -25,6 +25,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import okhttp3.OkHttpClient;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -38,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
 
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        OkHttpClient client = new OkHttpClient();
+
+
 //https://api.flightapi.io/compschedule/6205d08f13b15b74ee7b9a4e?mode=arrivals&day=2&iata=YYC
 // https://api.flightapi.io/compschedule/6205d08f13b15b74ee7b9a4e?mode=departure&day=2&iata=YYC
         TabLayout tabLayout = findViewById(R.id.tab_layout);
