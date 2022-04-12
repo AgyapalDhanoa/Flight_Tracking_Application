@@ -7,6 +7,13 @@
 
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textset"
+        android:layout_width="match_parent"
+        android:layout_height="563dp"
+
+        />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -35,7 +42,9 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
         android:layout_below="@id/tab_layout"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name" >
+
+    </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>
 
