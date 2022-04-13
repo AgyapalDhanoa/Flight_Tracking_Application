@@ -2,6 +2,8 @@ package com.agya.dhanoa.flight_track;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
@@ -18,6 +20,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.tabs.TabLayout;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 private TextView settext;
+private ArrayList<ItemList1> list;
+private RecyclerView recyclerView;
 
 
     @Override
@@ -45,6 +51,7 @@ private TextView settext;
 settext = findViewById(R.id.textset);
         androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        list = new ArrayList<>();
         OkHttpClient client = new OkHttpClient();
         String url = "https://api.flightapi.io/compschedule/6205d08f13b15b74ee7b9a4e?mode=departures&day=1&iata=YYC";
         Request request = new Request.Builder()
@@ -61,12 +68,32 @@ settext = findViewById(R.id.textset);
 if(response.isSuccessful()){
     String myResponse = response.body().string();
 
-    MainActivity.this.runOnUiThread(new Runnable() {
-        @Override
-        public void run() {
-            settext.setText(myResponse);
+    MainActivity.this.runOnUiThread(() -> {
+        try{
+            JSONObject object = new JSONObject(myResponse);
+            JSONArray array = object.getJSONArray("Response");
+            for(int i = 0 ; i< array.length();i++){
+
+                JSONObject wholeObject = array.getJSONObject(i);
+                JSONObject airport = wholeObject.getJSONObject("airport");
+              String iata = airport.getString("iata");
+
+
+ItemList1 item;
+item = new ItemList1(iata);
+                Toast.makeText(MainActivity.this, item.toString(), Toast.LENGTH_SHORT).show();
+if(!list.contains(item)){
+    list.add(item);
+}
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-    });
+            }
+    );
+
+
 }
             }
         });
@@ -100,7 +127,7 @@ if(response.isSuccessful()){
 //            public void onTabReselected(TabLayout.Tab tab) {
 //            }
 //        });
-
+//
 
 
     }
