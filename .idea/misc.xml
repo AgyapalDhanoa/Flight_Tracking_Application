@@ -10,11 +10,16 @@
         <entry key="..\:/Users/agyap/StudioProjects/Flight_Tracking_Application/app/src/main/res/layout/fragment_air_lines.xml" value="0.1" />
         <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/activity_airline_recycler.xml" value="0.36" />
         <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/activity_airport_recycler.xml" value="0.36" />
-        <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/activity_real_time_recycler.xml" value="0.268" />
+        <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/airline_item.xml" value="0.36" />
+        <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/airport_item.xml" value="0.268" />
         <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/fragment_air_lines.xml" value="0.2546875" />
         <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/fragment_airports.xml" value="0.2546875" />
         <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/fragment_real__time.xml" value="0.2546875" />
+        <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/menu.xml" value="0.1" />
+        <entry key="..\:/Users/agyap/studio/app/src/main/res/layout/toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/agyap/studio/app/src/main/res/menu/menu.xml" value="0.132" />
       </map>
     </option>
   </component>

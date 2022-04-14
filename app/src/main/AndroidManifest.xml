@@ -12,15 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flight_Track">
         <activity
-            android:name=".airline_Recycler"
-            android:exported="false" />
-        <activity
-            android:name=".Real_Time_Recycler"
-            android:exported="false" />
-        <activity
-            android:name=".Airport_Recycler"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
