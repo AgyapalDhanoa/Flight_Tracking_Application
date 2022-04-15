@@ -36,6 +36,7 @@ private String Text , Airport,code,Title;
     private AirlineAdapter mExampleAdapter;
     private ArrayList<AirlineItem> mExampleList;
 
+
     private RequestQueue mRequestQueue;
 private String Java = "Canada";
     public static final String EXTRA_MESSAGE = "com.agya.dhanoa.flight_track";
@@ -88,7 +89,6 @@ private String Java = "Canada";
                              code = hit.getString("type");
                              Title = hit.getString("downloads");
 
-
                             mExampleList.add(new AirlineItem(code, Airport, Title));
 
                         }
@@ -124,12 +124,10 @@ private String Java = "Canada";
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Java = query;
-//                delete();
-//                parseJSON();
+                delete();
+              parseJSON();
 
-                Intent  intent = new Intent(MainActivity.this,Display_Data.class );
-                intent.putExtra("Search",Airport);
-               startActivity(intent);
+
 
 
 
@@ -148,12 +146,13 @@ private String Java = "Canada";
     }
 //
 //
+    int Pos;
     @Override
     public void onNoteClick(int position) {
 //        mExampleList.get(position);
-//
-        Log.d("Data","OnAirlineClick: clicked" );
-//        Intent intent = new Intent(MainActivity.this,Display_Data.class);
-//        startActivity(intent);
+Pos =position;
+        Intent  intent = new Intent(MainActivity.this,Display_Data.class );
+        intent.putExtra("Search",mExampleList.get(position).getmCode());
+        startActivity(intent);
   }
 }
