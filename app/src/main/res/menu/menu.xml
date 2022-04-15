@@ -17,6 +17,8 @@
 
     <item
         android:title="@string/logout"
+        android:id="@+id/Logout"
+        android:onClick="BackLogout"
         android:icon="@drawable/ic_logout"
         app:showAsAction="ifRoom"
         />
