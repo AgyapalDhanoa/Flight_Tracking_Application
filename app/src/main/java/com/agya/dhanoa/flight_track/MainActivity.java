@@ -126,7 +126,7 @@ private String Java = "Canada";
 //                parseJSON();
 
                 Intent  intent = new Intent(MainActivity.this,Display_Data.class );
-               String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+                intent.putExtra("Search",Java);
                startActivity(intent);
 
 
