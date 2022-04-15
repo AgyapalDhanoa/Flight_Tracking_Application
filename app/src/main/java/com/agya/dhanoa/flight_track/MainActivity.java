@@ -6,6 +6,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,10 +25,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 private String Text;
     private RecyclerView mRecyclerView;
+    public ImageView imageView;
     private AirlineAdapter mExampleAdapter;
     private ArrayList<AirlineItem> mExampleList;
     private RequestQueue mRequestQueue;
@@ -40,6 +43,7 @@ private String Java = "Canada";
         setContentView(R.layout.activity_main);
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
+        imageView = findViewById(R.id.image_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -51,11 +55,17 @@ private String Java = "Canada";
 
 //https://api.flightapi.io/compschedule/6205d08f13b15b74ee7b9a4e?mode=arrivals&day=2&iata=YYC
 
-
+    }
+    private void RandomPhotoGenerator(){
+        int [] images={R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.four,R.drawable.five,R.drawable.six};
+        Random rand = new Random();
+        imageView.setImageResource(images[rand.nextInt(images.length)]);
 
     }
 
     private void parseJSON() {
+
+
         String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q="+Java+"&image_type=photo&pretty=true";
         mRequestQueue = Volley.newRequestQueue(this);
         Log.i("Current Value", Java);
@@ -72,6 +82,7 @@ private String Java = "Canada";
                             String Airport = hit.getString("tags");
                             String code = hit.getString("type");
                             String Title = hit.getString("downloads");
+
 
                             mExampleList.add(new AirlineItem(code, Airport, Title));
 

@@ -54,7 +54,7 @@ public class AirlineAdapter extends RecyclerView.Adapter<AirlineAdapter.AirlineV
 
     public class AirlineViewHolder extends RecyclerView.ViewHolder {
          TextView mAirport,mCode,mTitle;
-
+         ImageView Images;
 
         public AirlineViewHolder(View itemView) {
             super(itemView);
@@ -62,6 +62,8 @@ public class AirlineAdapter extends RecyclerView.Adapter<AirlineAdapter.AirlineV
             mAirport = itemView.findViewById(R.id.Airport_Name);
             mCode = itemView.findViewById(R.id.Code);
             mTitle = itemView.findViewById(R.id.Title);
+            Images = itemView.findViewById(R.id.image_view);
+
         }
     }
 }
