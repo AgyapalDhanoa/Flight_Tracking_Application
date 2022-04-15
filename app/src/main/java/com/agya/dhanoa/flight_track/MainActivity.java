@@ -1,11 +1,13 @@
 package com.agya.dhanoa.flight_track;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -35,7 +37,7 @@ private String Text;
     private ArrayList<AirlineItem> mExampleList;
     private RequestQueue mRequestQueue;
 private String Java = "Canada";
-
+    public static final String EXTRA_MESSAGE = "com.agya.dhanoa.flight_track";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ private String Java = "Canada";
         imageView.setImageResource(images[rand.nextInt(images.length)]);
 
     }
+
 
     private void parseJSON() {
 
@@ -91,7 +94,6 @@ private String Java = "Canada";
                         if(mExampleList.size()==0){
                             Toast.makeText(this, "No Items to display", Toast.LENGTH_SHORT).show();
                         }
-
                         mExampleAdapter = new AirlineAdapter(MainActivity.this, mExampleList);
                         mRecyclerView.setAdapter(mExampleAdapter);
 
@@ -108,8 +110,10 @@ private String Java = "Canada";
         mExampleList.clear();
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         getMenuInflater().inflate(R.menu.menu, menu);
 
         MenuItem item = menu.findItem(R.id.search);
@@ -118,8 +122,15 @@ private String Java = "Canada";
             @Override
             public boolean onQueryTextSubmit(String query) {
                 Java = query;
-                delete();
-                parseJSON();
+//                delete();
+//                parseJSON();
+
+                Intent  intent = new Intent(MainActivity.this,Display_Data.class );
+               String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+               startActivity(intent);
+
+
+
 
                 return false;
             }
@@ -132,5 +143,6 @@ private String Java = "Canada";
         });
         return super.onCreateOptionsMenu(menu);
     }
+
 
 }

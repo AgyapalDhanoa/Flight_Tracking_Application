@@ -27,7 +27,7 @@
             android:id="@+id/image_view"
             android:layout_width="379dp"
             android:layout_height="161dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/five"
             tools:ignore="ImageContrastCheck"
             android:contentDescription="@string/todo" />
 
