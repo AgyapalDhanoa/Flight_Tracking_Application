@@ -1,57 +1,39 @@
 package com.agya.dhanoa.flight_track;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
 
 public class MainActivity extends AppCompatActivity {
-
+private String Text;
     private RecyclerView mRecyclerView;
     private AirlineAdapter mExampleAdapter;
     private ArrayList<AirlineItem> mExampleList;
     private RequestQueue mRequestQueue;
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu,menu);
-        return true;
-    }
+private String Java = "Canada";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,43 +56,70 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseJSON() {
-      //  String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q=Airline&image_type=photo&pretty=true";
-String url= "https://api.flightapi.io/nearby/62583ac48f9b0d2fcef79dca?country=Canada&token=dHA9MCNsb2M9MzUxNTQyMTkjbG5nPTMzI3BsPTIjhfjdsfk5MzQxI2xicz0xNDoxNjcwNTczMQ==";
+        String url = "https://pixabay.com/api/?key=5303976-fd6581ad4ac165d1b75cc15b3&q="+Java+"&image_type=photo&pretty=true";
+        mRequestQueue = Volley.newRequestQueue(this);
+        Log.i("Current Value", Java);
+//String url= "https://api.flightapi.io/nearby/62583ac48f9b0d2fcef79dca?country="+Java+"&token=dHA9MCNsb2M9MzUxNTQyMTkjbG5nPTMzI3BsPTIjhfjdsfk5MzQxI2xicz0xNDoxNjcwNTczMQ==";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("Nearby Airports");
+                response -> {
+                    try {
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject hit = jsonArray.getJSONObject(i);
+                        JSONArray jsonArray = response.getJSONArray("hits");
 
-                                String Airport = hit.getString("Airport");
-                                String code = hit.getString("Code");
-                                String Title = hit.getString("Title");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject hit = jsonArray.getJSONObject(i);
 
-                                mExampleList.add(new AirlineItem(code, Airport, Title));
-                            }
+                            String Airport = hit.getString("tags");
+                            String code = hit.getString("type");
+                            String Title = hit.getString("downloads");
 
-                            mExampleAdapter = new AirlineAdapter(MainActivity.this, mExampleList);
-                            mRecyclerView.setAdapter(mExampleAdapter);
+                            mExampleList.add(new AirlineItem(code, Airport, Title));
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
                         }
+
+                        if(mExampleList.size()==0){
+                            Toast.makeText(this, "No Items to display", Toast.LENGTH_SHORT).show();
+                        }
+
+                        mExampleAdapter = new AirlineAdapter(MainActivity.this, mExampleList);
+                        mRecyclerView.setAdapter(mExampleAdapter);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
+                }, Throwable::printStackTrace);
 
         mRequestQueue.add(request);
     }
 
+    public void delete(){
+        int size  = mExampleList.size();
+        mExampleList.clear();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
 
+        MenuItem item = menu.findItem(R.id.search);
+        androidx.appcompat.widget.SearchView search = (androidx.appcompat.widget.SearchView) item.getActionView();
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Java = query;
+                delete();
+                parseJSON();
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
+    }
 
 }
