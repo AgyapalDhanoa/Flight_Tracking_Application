@@ -29,12 +29,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
-private String Text;
+public class MainActivity extends AppCompatActivity implements AirlineAdapter.OnAirlineListener{
+private String Text , Airport,code,Title;
     private RecyclerView mRecyclerView;
     public ImageView imageView;
     private AirlineAdapter mExampleAdapter;
     private ArrayList<AirlineItem> mExampleList;
+
     private RequestQueue mRequestQueue;
 private String Java = "Canada";
     public static final String EXTRA_MESSAGE = "com.agya.dhanoa.flight_track";
@@ -82,9 +83,10 @@ private String Java = "Canada";
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject hit = jsonArray.getJSONObject(i);
 
-                            String Airport = hit.getString("tags");
-                            String code = hit.getString("type");
-                            String Title = hit.getString("downloads");
+
+                             Airport = hit.getString("tags");
+                             code = hit.getString("type");
+                             Title = hit.getString("downloads");
 
 
                             mExampleList.add(new AirlineItem(code, Airport, Title));
@@ -94,7 +96,7 @@ private String Java = "Canada";
                         if(mExampleList.size()==0){
                             Toast.makeText(this, "No Items to display", Toast.LENGTH_SHORT).show();
                         }
-                        mExampleAdapter = new AirlineAdapter(MainActivity.this, mExampleList);
+                        mExampleAdapter = new AirlineAdapter(MainActivity.this, mExampleList,this);
                         mRecyclerView.setAdapter(mExampleAdapter);
 
                     } catch (JSONException e) {
@@ -126,7 +128,7 @@ private String Java = "Canada";
 //                parseJSON();
 
                 Intent  intent = new Intent(MainActivity.this,Display_Data.class );
-                intent.putExtra("Search",Java);
+                intent.putExtra("Search",Airport);
                startActivity(intent);
 
 
@@ -141,8 +143,17 @@ private String Java = "Canada";
                 return false;
             }
         });
+
         return super.onCreateOptionsMenu(menu);
     }
-
-
+//
+//
+    @Override
+    public void onNoteClick(int position) {
+//        mExampleList.get(position);
+//
+        Log.d("Data","OnAirlineClick: clicked" );
+//        Intent intent = new Intent(MainActivity.this,Display_Data.class);
+//        startActivity(intent);
+  }
 }

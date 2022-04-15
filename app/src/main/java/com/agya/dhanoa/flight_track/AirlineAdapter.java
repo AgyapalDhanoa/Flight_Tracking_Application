@@ -22,16 +22,18 @@ import java.util.ArrayList;
 public class AirlineAdapter extends RecyclerView.Adapter<AirlineAdapter.AirlineViewHolder> {
     private Context mContext;
     private ArrayList<AirlineItem> mExampleList;
+private OnAirlineListener monAirlineListener;
 
-    public AirlineAdapter(Context context, ArrayList<AirlineItem> exampleList) {
+public AirlineAdapter(Context context, ArrayList<AirlineItem> exampleList,OnAirlineListener onAirlineListener) {
         mContext = context;
         mExampleList = exampleList;
+        this.monAirlineListener = onAirlineListener;
     }
 
     @Override
     public AirlineViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(mContext).inflate(R.layout.airport_item, parent, false);
-        return new AirlineViewHolder(v);
+        return new AirlineViewHolder(v,monAirlineListener);
     }
 
     @Override
@@ -45,6 +47,9 @@ public class AirlineAdapter extends RecyclerView.Adapter<AirlineAdapter.AirlineV
         holder.mAirport.setText("Airport:"+Airport);
         holder.mCode.setText("Code:" + Code);
         holder.mTitle.setText("Title: " + Title);
+
+
+
     }
 
     @Override
@@ -52,18 +57,31 @@ public class AirlineAdapter extends RecyclerView.Adapter<AirlineAdapter.AirlineV
         return mExampleList.size();
     }
 
-    public class AirlineViewHolder extends RecyclerView.ViewHolder {
+    public interface OnAirlineListener{
+        void onNoteClick(int position);
+    }
+
+
+    public class AirlineViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
          TextView mAirport,mCode,mTitle;
          ImageView Images;
+        OnAirlineListener onAirlineListener;
 
-        public AirlineViewHolder(View itemView) {
+        public AirlineViewHolder(View itemView, OnAirlineListener onAirlineListener) {
             super(itemView);
+
 
             mAirport = itemView.findViewById(R.id.Airport_Name);
             mCode = itemView.findViewById(R.id.Code);
             mTitle = itemView.findViewById(R.id.Title);
             Images = itemView.findViewById(R.id.image_view);
+            this.onAirlineListener = onAirlineListener;
+           itemView.setOnClickListener(this);
+        }
 
+        @Override
+        public void onClick(View view) {
+onAirlineListener.onNoteClick(getAdapterPosition());
         }
     }
 }
