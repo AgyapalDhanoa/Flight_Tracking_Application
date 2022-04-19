@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.webkit.WebSettings;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -27,10 +24,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements AirlineAdapter.OnAirlineListener{
-private String Text , Airport,code,Title;
+    private String Airport;
+    private String code;
+    private String Title;
     private RecyclerView mRecyclerView;
     public ImageView imageView;
     private AirlineAdapter mExampleAdapter;
@@ -39,7 +37,6 @@ private String Text , Airport,code,Title;
 
     private RequestQueue mRequestQueue;
 private String Java = "Canada";
-    public static final String EXTRA_MESSAGE = "com.agya.dhanoa.flight_track";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,12 +55,6 @@ private String Java = "Canada";
         parseJSON();
 
 //https://api.flightapi.io/compschedule/6205d08f13b15b74ee7b9a4e?mode=arrivals&day=2&iata=YYC
-
-    }
-    private void RandomPhotoGenerator(){
-        int [] images={R.drawable.one,R.drawable.two,R.drawable.three,R.drawable.four,R.drawable.five,R.drawable.six};
-        Random rand = new Random();
-        imageView.setImageResource(images[rand.nextInt(images.length)]);
 
     }
 
@@ -108,7 +99,6 @@ private String Java = "Canada";
     }
 
     public void delete(){
-        int size  = mExampleList.size();
         mExampleList.clear();
     }
 
@@ -126,10 +116,6 @@ private String Java = "Canada";
                 Java = query;
                 delete();
               parseJSON();
-
-
-
-
 
 
                 return false;
@@ -152,7 +138,12 @@ private String Java = "Canada";
 //        mExampleList.get(position);
 Pos =position;
         Intent  intent = new Intent(MainActivity.this,Display_Data.class );
-        intent.putExtra("Search",mExampleList.get(position).getmCode());
+        intent.putExtra("Search",mExampleList.get(position).getCode());
         startActivity(intent);
   }
+
+    public void BackLogout(MenuItem item) {
+        Intent intent = new Intent(this, LoginAndSignUp.class);
+        startActivity(intent);
+    }
 }
