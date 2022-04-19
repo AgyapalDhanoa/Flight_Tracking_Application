@@ -2,6 +2,7 @@ package com.agya.dhanoa.flight_track;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
@@ -10,6 +11,7 @@ import android.webkit.WebViewClient;
 
 public class Display_Data extends AppCompatActivity {
 public WebView webView;
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +20,7 @@ public WebView webView;
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         Intent intent = getIntent();
-        String data  ="Airlines";
+        String data;
         data=  intent.getStringExtra("Search");
 
         webView.setWebViewClient(new WebViewClient());

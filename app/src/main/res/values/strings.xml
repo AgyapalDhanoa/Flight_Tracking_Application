@@ -23,9 +23,26 @@
     <string name="departure_airport">Departure Airport:</string>
     <string name="scheduled_time">Scheduled Time</string>
     <string name="airport_name">Airport Name</string>
-    <string name="todo">TODO</string>
+
     <string name="code">Code:</string>
     <string name="search">Search</string>
     <string name="alerts">Alerts</string>
     <string name="logout">Logout</string>
+
+    <string name="username">User Name:</string>
+    <string name="enter_here">Enter here</string>
+
+    <string name="todo">TODO</string>
+    <string name="enter_password">Enter password</string>
+    <string name="password">Password:</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">login</string>
+    <string name="login_Logo">LoginPageLogo</string>
+    <string name="already_a_user">Already a user?</string>
+    <string name="last_name">Last Name:</string>
+    <string name="g_mail">G-mail:</string>
+    <string name="gmail">Gmail</string>
+    <string name="last_name1">Last Name</string>
+    <string name="new_user">new user ?</string>
 </resources>

@@ -1,7 +1,9 @@
 package com.agya.dhanoa.flight_track;
 
 public class AirlineItem {
-    private String mAirport,mCode,mTitle;
+    private final String mAirport;
+    private final String mCode;
+    private final String mTitle;
 
 
     public AirlineItem(String Airport, String Code, String Title) {
@@ -10,16 +12,16 @@ public class AirlineItem {
         mTitle = Title;
     }
 
-    public String getmAirport() {
+    public String getAirport() {
         return mAirport;
     }
 
-    public String getmCode() {
+    public String getCode() {
         return mCode;
     }
 
 
-    public String getmTitle() {
+    public String getTitle() {
         return mTitle;
     }
 }

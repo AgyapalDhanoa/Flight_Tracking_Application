@@ -12,10 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Flight_Track">
         <activity
-            android:name=".Display_Data"
+            android:name=".Sign_UP"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Display_Data"
+            android:exported="false" />
+        <activity
+            android:name=".LoginAndSignUp"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
