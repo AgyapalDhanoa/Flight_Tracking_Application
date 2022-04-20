@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class LoginAndSignUp extends AppCompatActivity {
 
-    private EditText user, pass;
+    private EditText user, pass  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
